@@ -1,0 +1,52 @@
+.ui-tab-card {
+  min-width: 400px;
+  background: #fff;
+}
+.ui-tab-list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap; 
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.ui-tab-list-item {
+  flex: 1;
+  color: #666;
+  padding: 12px 0;
+  cursor: pointer;
+  text-align: center;
+  background: #fff;
+}
+.ui-tab-list-item.active {
+  color: #fff;
+  background: #666;
+}
+.ui-tab-content {
+  position: relative;
+}
+.ui-tab-content-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+  min-height: 200px;
+  background: #fff;
+  transition: opacity .2s ease;
+}
+
+.ui-tab-content-item.active {
+  opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+
