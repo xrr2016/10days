@@ -13,15 +13,16 @@
 }
 .ui-tab-list-item {
   flex: 1;
-  color: #666;
+  color: #59b9c6;
   padding: 12px 0;
   cursor: pointer;
   text-align: center;
-  background: #fff;
+  /* background: #fff; */
+  border-bottom: 2px solid transparent;
 }
 .ui-tab-list-item.active {
-  color: #fff;
-  background: #666;
+  /* background: #666; */
+  border-bottom-color: #59b9c6;
 }
 .ui-tab-content {
   position: relative;
