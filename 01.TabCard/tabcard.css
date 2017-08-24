@@ -32,9 +32,13 @@
   left: 0;
   opacity: 0;
   width: 100%;
-  min-height: 200px;
+  height: 200px;
+  overflow: hidden;
   background: #fff;
   transition: opacity .2s ease;
+}
+.ui-tab-content-item img {
+  width: 100%;
 }
 
 .ui-tab-content-item.active {

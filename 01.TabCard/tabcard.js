@@ -48,7 +48,7 @@
       clearInterval(timeout)
     }
   }
-  loogDisplay(1500)
+  // loogDisplay(1500)
   // TODO default display
   // showContent(1)
   tabCard.addEventListener('click', clickHandler, false)
