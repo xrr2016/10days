@@ -1,15 +1,14 @@
 .ui-tab-card {
   min-width: 400px;
-  background: #fff;
 }
 .ui-tab-list {
   position: relative;
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  flex-wrap: nowrap; 
   padding: 0;
   margin: 0;
+  flex-wrap: nowrap; 
   list-style: none;
 }
 .ui-tab-list-item {
@@ -20,7 +19,7 @@
   text-align: center;
   background: #fff;
   opacity: .6;
-  /* border-bottom: 2px solid transparent; */
+  border-bottom: 2px solid transparent;
 }
 .ui-tab-list-indicator {
   position: absolute;
@@ -29,7 +28,6 @@
   height: 2px;
   width: 25%;
   background: #007bbb;
-  will-change: transform;
   transition: all .2s ease;
 }
 .ui-tab-list-item:hover {
@@ -37,7 +35,7 @@
 }
 .ui-tab-list-item.active {
   opacity: .8;
-  /* border-bottom-color: #007bbb; */
+  border-bottom-color: #007bbb;
 }
 .ui-tab-content {
   position: relative;
@@ -56,7 +54,6 @@
 .ui-tab-content-item img {
   width: 100%;
 }
-
 .ui-tab-content-item.active {
   opacity: 1;
 }
