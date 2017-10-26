@@ -1,1 +1,9 @@
-## 俄罗斯方块游戏
+# lazy-loading.js
+
+Install
+
+Usage
+
+License
+
+MIT

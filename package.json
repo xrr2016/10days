@@ -1,0 +1,21 @@
+{
+  "name": "lazy-loading.js",
+  "version": "0.0.1",
+  "description": "A lazy load library.",
+  "main": "dist/lazy-load.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": "https://github.com/xrr2016/lazy-loading.js.git",
+  "author": "xrr2016 <xiaoranran1993@163.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "uglifyjs-webpack-plugin": "^1.0.1",
+    "webpack": "^2.2.1"
+  }
+}
