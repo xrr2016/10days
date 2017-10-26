@@ -2,7 +2,7 @@ const path = require('path')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
-  entry: path.join(__dirname, 'src', 'lazy-load.js'),
+  entry: path.join(__dirname, 'src', 'index.js'),
   output: {
     filename: 'lazy-load.min.js',
     path: path.resolve(__dirname, 'dist')
