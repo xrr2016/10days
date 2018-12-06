@@ -11,8 +11,8 @@ async function getImg() {
 	return url
 }
 
-
 const URL = `${process.env.SEND_URL}${process.env.ACCESS_TOKEN}`
+
 async function sendMessage(message) {
 	if (!message) {
 		return
@@ -22,70 +22,77 @@ async function sendMessage(message) {
 	}).response
 }
 
-schedule.scheduleJob({
-	hour: 8,
-	minute: randomNum(50, 59),
-	second: randomNum(1, 59),
-	dayOfWeek: new schedule.Range(1, 5)
-}, async date => {
-	const img = await getImg()
-	const message = {
-		msgtype: 'markdown',
-		markdown: {
-			title: '上班的时间到了，快去签到吧',
-			text: `##### 上班喽 😗 \n ![img](${img})`
-		},
-		at: {
-			isAtAll: false
+schedule.scheduleJob(
+	{
+		hour: 8,
+		minute: 55,
+		second: randomNum(1, 59),
+		dayOfWeek: new schedule.Range(1, 5)
+	},
+	async date => {
+		const img = await getImg().catch(() => {})
+		const message = {
+			msgtype: 'markdown',
+			markdown: {
+				title: '上班的时间到了，快去签到吧',
+				text: `### 上班喽 😗 \n ![img](${img})`
+			},
+			at: {
+				isAtAll: false
+			}
 		}
+
+		sendMessage(message).catch(() => {})
+		console.log('date :', date)
 	}
+)
 
-	sendMessage(message)
-	console.log('date :', date)
-
-})
-
-schedule.scheduleJob({
-	hour: 11,
-	minute: 45,
-	second: randomNum(1, 59),
-	dayOfWeek: new schedule.Range(1, 5)
-}, async date => {
-	const img = await getImg()
-	const message = {
-		msgtype: 'markdown',
-		markdown: {
-			title: '吃饭的时间到了',
-			text: `##### 吃饭喽 🍚 \n  ![](${img})`
-		},
-		at: {
-			isAtAll: false
+schedule.scheduleJob(
+	{
+		hour: 11,
+		minute: 45,
+		second: randomNum(1, 59),
+		dayOfWeek: new schedule.Range(1, 5)
+	},
+	async date => {
+		const img = await getImg().catch(() => {})
+		const message = {
+			msgtype: 'markdown',
+			markdown: {
+				title: '吃饭的时间到了',
+				text: `### 吃饭喽 🍚 \n  ![img](${img})`
+			},
+			at: {
+				isAtAll: false
+			}
 		}
+
+		sendMessage(message).catch(() => {})
+		console.log('date :', date)
 	}
+)
 
-	sendMessage(message)
-	console.log('date :', date)
-
-})
-
-schedule.scheduleJob({
-	hour: 18,
-	minute: randomNum(1, 2),
-	second: randomNum(0, 59),
-	dayOfWeek: new schedule.Range(1, 5)
-}, async date => {
-	const img = await getImg()
-	const message = {
-		msgtype: 'markdown',
-		markdown: {
-			title: '下班的时间到了，快去签到吧',
-			text: `##### 回家喽 😎 \n ![](${img})`
-		},
-		at: {
-			isAtAll: false
+schedule.scheduleJob(
+	{
+		hour: 18,
+		minute: 1,
+		second: randomNum(0, 59),
+		dayOfWeek: new schedule.Range(1, 5)
+	},
+	async date => {
+		const img = await getImg().catch(() => {})
+		const message = {
+			msgtype: 'markdown',
+			markdown: {
+				title: '下班的时间到了，快去签到吧',
+				text: `### 回家喽 😎 \n ![](${img})`
+			},
+			at: {
+				isAtAll: false
+			}
 		}
-	}
 
-	sendMessage(message)
-	console.log('date :', date)
-})
+		sendMessage(message).catch(() => {})
+		console.log('date :', date)
+	}
+)
