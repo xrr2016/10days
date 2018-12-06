@@ -1,67 +1,85 @@
 const r2 = require('r2')
 const schedule = require('node-schedule')
 
-const SEND_URL = `https://oapi.dingtalk.com/robot/send?access_token=`
-const ACCESS_TOKEN = '828107a72c581e39daa9ab75597796ed5116d62d87f494da5af72e64d1b0c2f7'
+require('dotenv').config()
 
-const IMG_URL = 'https://bing.ioliu.cn/v1/rand?type=json'
-
-const JOB_TIME = {
-	morning: {
-		hour: 8,
-		minute: 58,
-		second: 0
-	},
-	evening: {
-		hour: 6,
-		minute: 1,
-		second: 0
-	}
-}
+const randomNum = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min
 
 async function getImg() {
-	const json = await r2.get(IMG_URL).json
+	const json = await r2.get(process.env.IMG_URL).json
 	const url = json.data.url.replace('1920x1080', '320x240')
 	return url
 }
 
+
+const URL = `${process.env.SEND_URL}${process.env.ACCESS_TOKEN}`
 async function sendMessage(message) {
 	if (!message) {
 		return
 	}
-	const url = `${SEND_URL}${ACCESS_TOKEN}`
-	const response = await r2.post(url, { json: message }).response
+	const response = await r2.post(URL, {
+		json: message
+	}).response
 }
 
-const signInJob = schedule.scheduleJob(JOB_TIME.morning, async date => {
+schedule.scheduleJob({
+	hour: 8,
+	minute: randomNum(50, 59),
+	second: randomNum(1, 59),
+	dayOfWeek: new schedule.Range(1, 5)
+}, async date => {
 	const img = await getImg()
 	const message = {
 		msgtype: 'markdown',
 		markdown: {
 			title: '上班的时间到了，快去签到吧',
-			text: `
-                > 上班喽 😗
-                > ![](${img})
-            `
+			text: `##### 上班喽 😗 \n ![img](${img})`
 		},
 		at: {
 			isAtAll: false
 		}
 	}
+
 	sendMessage(message)
+	console.log('date :', date)
+
 })
 
-const signUpJob = schedule.scheduleJob(JOB_TIME.evening, async date => {
+schedule.scheduleJob({
+	hour: 11,
+	minute: 45,
+	second: randomNum(1, 59),
+	dayOfWeek: new schedule.Range(1, 5)
+}, async date => {
 	const img = await getImg()
+	const message = {
+		msgtype: 'markdown',
+		markdown: {
+			title: '吃饭的时间到了',
+			text: `##### 吃饭喽 🍚 \n  ![](${img})`
+		},
+		at: {
+			isAtAll: false
+		}
+	}
 
+	sendMessage(message)
+	console.log('date :', date)
+
+})
+
+schedule.scheduleJob({
+	hour: 18,
+	minute: randomNum(1, 2),
+	second: randomNum(0, 59),
+	dayOfWeek: new schedule.Range(1, 5)
+}, async date => {
+	const img = await getImg()
 	const message = {
 		msgtype: 'markdown',
 		markdown: {
 			title: '下班的时间到了，快去签到吧',
-			text: `
-                > 下班回家喽 😎
-                > ![](${img})
-            `
+			text: `##### 回家喽 😎 \n ![](${img})`
 		},
 		at: {
 			isAtAll: false
@@ -69,4 +87,5 @@ const signUpJob = schedule.scheduleJob(JOB_TIME.evening, async date => {
 	}
 
 	sendMessage(message)
+	console.log('date :', date)
 })
