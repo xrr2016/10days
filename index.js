@@ -7,7 +7,7 @@ const randomNum = (min, max) => Math.floor(Math.random() * (max - min + 1)) + mi
 
 async function getImg() {
 	const json = await r2.get(process.env.IMG_URL).json
-	const url = json.data.url.replace('1920x1080', '320x240')
+	const url = json.data.url.replace('1920x1080', '240x240')
 	return url
 }
 
@@ -22,8 +22,7 @@ async function sendMessage(message) {
 	}).response
 }
 
-schedule.scheduleJob(
-	{
+schedule.scheduleJob({
 		hour: 8,
 		minute: 55,
 		second: randomNum(1, 59),
@@ -47,8 +46,7 @@ schedule.scheduleJob(
 	}
 )
 
-schedule.scheduleJob(
-	{
+schedule.scheduleJob({
 		hour: 11,
 		minute: 45,
 		second: randomNum(1, 59),
@@ -72,8 +70,7 @@ schedule.scheduleJob(
 	}
 )
 
-schedule.scheduleJob(
-	{
+schedule.scheduleJob({
 		hour: 18,
 		minute: 1,
 		second: randomNum(0, 59),
