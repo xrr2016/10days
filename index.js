@@ -90,7 +90,7 @@ schedule.scheduleJob(
 
 schedule.scheduleJob(
   {
-    hour: 18,
+    hour: 16,
     minute: 0,
     second: 10,
     dayOfWeek: new schedule.Range(1, 5)
